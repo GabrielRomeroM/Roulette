@@ -7,31 +7,46 @@ function spinRuleta(){
   return Math.floor(Math.random() *10)
 }
 
-function tirarRuleta(){
-   numeroApuesta = parseFloat(document.getElementById('numero').value);
-
-  if(isNaN(numeroApuesta) || numeroApuesta <0 || numeroApuesta > 9 ){
-    mostrarMensaje('Numero invalido, por favor ingrese un numero entre 0 y 9','red');
-    return;
-  }
+function mostrarMensaje(resultado, color, mensaje){
+   var resultadoDiv = document.getElementById('resultado');
+   var mensajeResultado = document.getElementById('mensaje-resultado');
+   resultadoDiv.style.display = 'block';
+   mensajeResultado.innerHTML = resultado;
+   mensajeResultado.style.color = color;
   
-  numeroRuleta = spinRuleta();
-  document.getElementById('ruleta').innerHTML = numeroRuleta;
-    if (numeroRuleta === numeroApuesta){
-      mostrarMensaje('¡GANASTE! Se han añadido 100 al saldo','green');
-      aumentarsaldo();
-    }
-    else{
-      mostrarMensaje('No acertaste. Se han disminuido 100 del saldo','red');
-      disminuirSaldo();
-    }
-    actualizarSaldo();
+  document.getElementById('numero-apostado').innerHTML = numeroApuesta;
+  document.getElementById('numero-ruleta').innerHTML = numeroRuleta;
+  document.getElementById('saldo-atual').innerHTML = "$" + saldo;
+}
+  
+function tirarRuleta(){
+  numeroApuesta = parseInt(document.getElementById('numero').value);
+
+  if (isNaN(numeroApuesta) || numeroApuesta < 0 || numeroApuesta > 9){
+    mostrarMensaje('Numero invalido. Debe ser un numero entre 0 y 9','red', 'Numero invalido');
+    return
   }
+  numeroRuleta = spinRuleta();
+
+  document.getElementById('ruleta').innerHTML = numeroRuleta;
+  if (numeroRuleta == numeroApuesta){
+    aumentarSaldo();
+    mostrarMensaje('¡Acertaste!','green', 'Ganaste');
+  } else {
+    disminuyeSaldo();
+    mostrarMensaje('Perdiste','red', 'Perdiste');
+  }
+  actualizarSaldo();
+}
 
 function aumentarSaldo(){
-  saldo += 100;
+  saldo += 20;
 }
 
 function disminuyeSaldo(){
-  saldo -= 100;
+  saldo -= 20;
+}
+
+function actualizarSaldo(){
+  document.getElementById('saldo').innerHTML = "$" + saldo;
 }
