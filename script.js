@@ -17,6 +17,12 @@ function mostrarMensaje(resultado, color, mensaje){
   document.getElementById('numero-apostado').innerHTML = numeroApuesta;
   document.getElementById('numero-ruleta').innerHTML = numeroRuleta;
   document.getElementById('saldo-atual').innerHTML = "$" + saldo;
+
+ console.log({
+   resultado: resultado,
+   color: color,
+   mensaje: mensaje
+ })
 }
   
 function tirarRuleta(){
@@ -37,6 +43,11 @@ function tirarRuleta(){
     mostrarMensaje('Perdiste','red', 'Perdiste');
   }
   actualizarSaldo();
+  
+  console.log({
+    numeroApuesta: numeroApuesta,
+    numeroRuleta: numeroRuleta,
+  })
 }
 
 function aumentarSaldo(){
