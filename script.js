@@ -10,28 +10,28 @@ function spinRuleta(){
 function tirarRuleta(){
    numeroApuesta = parseFloat(document.getElementById('numero').value);
 
-  if(isNaN(numeroApuesta) || numeroApuesta <0 || numeroApuesta >9 ){
-    alert('Numero invalido, por favor ingrese un numero entre 0 y 9');
+  if(isNaN(numeroApuesta) || numeroApuesta <0 || numeroApuesta > 9 ){
+    mostrarMensaje('Numero invalido, por favor ingrese un numero entre 0 y 9','red');
     return;
   }
   
   numeroRuleta = spinRuleta();
   document.getElementById('ruleta').innerHTML = numeroRuleta;
-
-  if (numeroRuleta === numeroApuesta){
-    alert('¡GANASTE!');
-    aumentarsaldo();
-  }else{
-    alert('Segui participando');
-    disminuirSaldo();
+    if (numeroRuleta === numeroApuesta){
+      mostrarMensaje('¡GANASTE! Se han añadido 100 al saldo','green');
+      aumentarsaldo();
+    }
+    else{
+      mostrarMensaje('No acertaste. Se han disminuido 100 del saldo','red');
+      disminuirSaldo();
+    }
+    actualizarSaldo();
   }
-  document.getElementById('saldo').innerHTML = "$" + saldo;
-}
 
-function aumentarsaldo(){
+function aumentarSaldo(){
   saldo += 100;
 }
 
-function disminuyesaldo(){
+function disminuyeSaldo(){
   saldo -= 100;
 }

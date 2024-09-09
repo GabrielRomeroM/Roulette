@@ -1,0 +1,14 @@
+.resultado-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    width: 300px;
+    text-align: center;
+}
+.resultado-card h3 {
+    color: green;
+}
+.resultado-card p {
+    margin: 5px 0;
+}
