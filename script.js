@@ -25,6 +25,7 @@ function tirarRuleta(){
     alert('Segui participando');
     disminuirSaldo();
   }
+  document.getElementById('saldo').innerHTML = "$" + saldo;
 }
 
 function aumentarsaldo(){
